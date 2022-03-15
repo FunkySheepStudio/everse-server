@@ -1,0 +1,51 @@
+{
+  "name": "funky-sheep-everse-server",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "dev-debug": "cross-env NODE_ENV=development nodemon --trace-warnings server/index.js --watch server --inspect",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "test": "jest",
+    "coverage": "cross-env NODE_ENV=development jest --collect-coverage --passWithNoTests",
+    "simulate": "node ./simulate"
+  },
+  "dependencies": {
+    "@feathersjs/authentication-client": "^4.5.11",
+    "@feathersjs/authentication-local": "^4.5.11",
+    "@feathersjs/configuration": "^4.5.11",
+    "@feathersjs/express": "^4.5.11",
+    "@feathersjs/socketio": "^4.5.11",
+    "@feathersjs/socketio-client": "^4.5.11",
+    "@mdi/js": "^6.3.95",
+    "@vue/composition-api": "^0.6.7",
+    "core-js": "^3.13.1",
+    "cross-env": "^7.0.3",
+    "feathers-nedb": "^5.1.0",
+    "feathers-vuex": "^3.16.0",
+    "idb": "^6.1.2",
+    "nedb": "^1.8.0",
+    "net.funkysheep.server.ui": "^1.0.1",
+    "nodemon": "^2.0.7",
+    "nuxt": "^2.15.6",
+    "nuxt-leaflet": "0.0.25",
+    "selfsigned": "^1.10.11",
+    "vue2-leaflet-rotatedmarker": "^1.0.9"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^6.0.1",
+    "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/vuetify": "^1.11.3",
+    "@vue/test-utils": "^1.2.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.0.2",
+    "eslint": "^7.27.0",
+    "eslint-plugin-nuxt": "^2.0.0",
+    "jest": "^27.0.3",
+    "vue-jest": "^3.0.7"
+  }
+}
