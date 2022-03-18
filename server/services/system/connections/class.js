@@ -24,7 +24,7 @@ exports.Service = class Service extends ServiceClass {
             msg.socket = socket._id
             this.app.service('/api/system/messages').create(msg)
           })
-    
+
           socket.on('close', () => {
             // Delete the socket
             this.remove(socket._id)

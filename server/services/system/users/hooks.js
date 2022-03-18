@@ -26,8 +26,7 @@ async function create (context) {
           context.data.login = 'admin'
           context.data.password = 'admin'
         }
-
-      return context
+        return context
       }
     })
 }
@@ -55,13 +54,23 @@ module.exports = {
     remove: []
   },
 
-  after: {
+  /*  after: {
     all: [],
     find: [sendResult],
     get: [sendResult],
     create: [sendResult],
     update: [sendResult, sendUserBack],
     patch: [sendResult, sendUserBack],
+    remove: []
+  },  */
+
+  after: {
+    all: [],
+    find: [],
+    get: [],
+    create: [],
+    update: [],
+    patch: [],
     remove: []
   },
 

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
-    "dev-debug": "cross-env NODE_ENV=development nodemon --trace-warnings server/index.js --watch server --inspect",
+    "dev-debug": "cross-env NODE_ENV=development nodemon --watch server --inspect=0.0.0.0:9228 --trace-warnings server/index.js",
     "build": "nuxt build",
     "start": "cross-env NODE_ENV=production node server/index.js",
     "generate": "nuxt generate",

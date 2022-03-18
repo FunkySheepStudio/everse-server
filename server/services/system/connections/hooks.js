@@ -7,12 +7,12 @@ function create (context) {
 }
 
 //  Set the user online field depending on the numbers of connections left
-async function userOnline(context) {
+async function userOnline (context) {
   //  If the record exist
   if (context.id) {
     await context.service.get(context.id) // We get the current record
       .then(async (connection) => {
-        if (connection.user != '') {
+        if (connection.user !== '') {
           await context.service.find({
             query: {
               user: connection.user
@@ -28,7 +28,7 @@ async function userOnline(context) {
         }
       })
   }
-  
+
   if (context.data && context.data.user !== '') { // If no old user but new one still
     context.app.service('/api/system/users').patch(context.data.user, {
       online: true

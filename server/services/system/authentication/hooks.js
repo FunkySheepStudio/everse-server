@@ -10,7 +10,7 @@ function setUserToConnection (context) {
       user: context.result.user._id
     }
   )
-  
+
   return context
 }
 
