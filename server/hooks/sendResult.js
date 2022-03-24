@@ -26,4 +26,9 @@ module.exports = (context) => {
         break
     }
   }
+
+  if (context.error && context.params) {
+    message.data = context.error.message
+    context.app.service('/api/system/messages').sendToSocket(context.params.socket, message, context.params.socket)
+  }
 }

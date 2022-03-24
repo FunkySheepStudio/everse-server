@@ -36,7 +36,7 @@ module.exports = {
   },
 
   error: {
-    all: [],
+    all: [sendResult],
     find: [],
     get: [],
     create: [],

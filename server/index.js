@@ -12,6 +12,11 @@ const channels = require('./channels')
 process.env.NODE_CONFIG_DIR = path.join(__dirname, 'config/')
 
 exports.start = function start () {
+  // Catch the unhandled errors
+  process.on('unhandledRejection', (reason, p) => {
+    console.log('Unhandled Rejection at: Promise ', p, ' reason: ', reason);
+  });
+
   const app = express(feathers())
   app.configure(socketio())
 

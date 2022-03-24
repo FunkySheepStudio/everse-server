@@ -34,6 +34,9 @@ exports.Service = class Service extends ServiceClass {
 
     //  Save the message
     this.app.service('/api/system/messages').create(msg)
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   sendToEveryone (msg, from) {
