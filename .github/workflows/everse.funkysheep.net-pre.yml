@@ -14,7 +14,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           echo ---- Install GIT ---
-          sudo apt-get install git
+          sudo apt-get -y install git
           echo ---- Remove the last repo ---
           sudo rm -rf /var/www/everse.funkysheep.net
           echo ---- Cloning the repository ---
