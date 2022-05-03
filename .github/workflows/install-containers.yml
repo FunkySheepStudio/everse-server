@@ -22,5 +22,5 @@ jobs:
           wget https://raw.githubusercontent.com/FunkySheepStudio/Infra/master/docker-compose.yaml -O docker-compose.yaml
           echo ---- Setting the docker infrastructure ----
           sudo docker-compose up -d --build
-          echo ---- Remove the docker compose file ----
-          sudo rm docker-compose.yaml
+#          echo ---- Remove the docker compose file ----
+#          sudo rm docker-compose.yaml
