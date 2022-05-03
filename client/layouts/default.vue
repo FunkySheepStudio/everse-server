@@ -98,8 +98,8 @@ export default {
           title: 'Game',
           items: [
             {
-              title: 'Services',
-              to: '/system/reputation'
+              title: 'Map',
+              to: '/game/map'
             }
           ]
         }

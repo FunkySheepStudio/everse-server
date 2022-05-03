@@ -30,7 +30,7 @@ exports.start = function start () {
   app.configure(configuration())
   const env = process.env.NODE_ENV || 'production'
   app.set('env', env)
-  app.set('homePath', path.join(require('os').homedir(), '.treasure', app.get('env')))
+  app.set('homePath', path.join(require('os').homedir(), '.everse-server', app.get('env')))
 
   app.configure(services)
   app.configure(channels)
