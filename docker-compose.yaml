@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  admin-server:
+    container_name: funkysheep-everse
+    build:
+      context: https://github.com/FunkySheepStudio/everse-server.git
+      dockerfile: DockerFile
+    ports:
+      - "5000"
+      - "5001"
