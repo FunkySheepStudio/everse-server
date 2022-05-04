@@ -28,14 +28,14 @@ module.exports = class ServiceClass extends Service {
     this.emit('stopped', this.name)
   }
 
-  create(data, params) {
+  create (data, params) {
     return this.exist(data._id)
-      .then(exist => {
-          if (!exist) {
-            return super.create(data, params)
-          } else {
-            return super.patch(data._id, data, params)
-          }
+      .then((exist) => {
+        if (!exist) {
+          return super.create(data, params)
+        } else {
+          return super.patch(data._id, data, params)
+        }
       })
   }
 

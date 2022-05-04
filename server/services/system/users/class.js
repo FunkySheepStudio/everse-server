@@ -21,7 +21,7 @@ exports.Service = class Service extends ServiceClass {
       })
 
     this.patch(null, { online: false }, { query: { online: true } })
-    
+
     app.on('login', this.onLogin.bind(this))
     app.on('logout', this.onLogout.bind(this))
 

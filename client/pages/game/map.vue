@@ -1,9 +1,5 @@
 <template>
   <section>
-    <funkysheep-service
-      service="/api/game/markers"
-      hide-fields
-    />
     <div id="map-wrap" style="height: 400px; width: 800px">
       <client-only>
         <l-map
@@ -27,15 +23,51 @@
             :draggable="true"
             @dragend="markerMove(marker, $event)"
           >
+            <l-icon
+              :icon-size="[30, 30]"
+            >
+              <v-icon
+                size="30px"
+                class="pathClass"
+                color="purple"
+              >
+                {{ svgMarker }}
+              </v-icon>
+            </l-icon>
+          </l-marker>
+          <l-marker
+            v-for="player in players().data"
+            :key="player._id"
+            :lat-lng="[player.latitude.toString(), player.longitude.toString()]"
+          >
+            <l-icon
+              :icon-size="[30, 30]"
+            >
+              <v-icon
+                size="30px"
+                class="userClass"
+                color="blue"
+              >
+                {{ svgUser }}
+              </v-icon>
+            </l-icon>
           </l-marker>
         </l-map>
       </client-only>
     </div>
+    <funkysheep-service
+      service="/api/game/player_position"
+      hide-fields
+    />
+    <funkysheep-service
+      service="/api/game/markers"
+      hide-fields
+    />
   </section>
 </template>
 <script>
 // import Vue2LeafletRotatedMarker from 'vue2-leaflet-rotatedmarker'
-import { mdiNavigation, mdiAdjust } from '@mdi/js'
+import { mdiBlurRadial, mdiAccount } from '@mdi/js'
 import { LMap, LTileLayer, LMarker } from 'vue2-leaflet'
 import { mapActions, mapGetters } from 'vuex'
 export default {
@@ -47,8 +79,8 @@ export default {
   },
   data () {
     return {
-      svgUser: mdiNavigation,
-      svgPath: mdiAdjust,
+      svgUser: mdiAccount,
+      svgMarker: mdiBlurRadial,
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -59,36 +91,15 @@ export default {
   },
   computed: {
     ...mapGetters('/api/game/markers', { markers: 'find', get: 'get' }),
-    markersHeaders () {
-      return [
-        {
-          text: 'ID',
-          value: '_id'
-        },
-        {
-          text: 'Name',
-          value: 'name'
-        },
-        {
-          text: 'Latitude',
-          value: 'latitude'
-        },
-        {
-          text: 'Longitude',
-          value: 'longitude'
-        },
-        {
-          text: 'Altitude',
-          value: 'height'
-        }
-      ]
-    }
+    ...mapGetters('/api/game/player_position', { players: 'find', get: 'get' })
   },
   mounted () {
     this.findMarkers()
+    this.findPlayers()
   },
   methods: {
     ...mapActions('/api/game/markers', { findMarkers: 'find', patchMarker: 'patch', removeMarker: 'remove' }),
+    ...mapActions('/api/game/player_position', { findPlayers: 'find' }),
     mapClick (event) {},
     markerMove (marker, event) {
       this.patchMarker([
@@ -119,8 +130,8 @@ export default {
   {
     font-size: 30px;
     background:transparent;
-    border:2px solid #FFEB3B;
-    color:blue;
+    border:2px solid purple;
+    color:purple;
     font-weight:bold;
     text-align:center;
     border-radius:50%;
