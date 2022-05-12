@@ -15,10 +15,17 @@ function dispatch (context) {
   //  Clean the data
   switch (context.data.request) {
     case 'find':
+      context.data.params.query = context.data.data.query
+
       context.app.service(context.data.service).find(context.data.params)
         .catch((err) => {
           context.app.log(err)
         })
+
+      // Stringify the query since it can contain unothaurized caracters
+      context.data.data = JSON.stringify(context.data.data)
+      context.data.params = JSON.stringify(context.data.params)
+
       break
     case 'get':
       context.app.service(context.data.service).get(context.data.key, context.data.params)

@@ -7,13 +7,13 @@ function create (context) {
 }
 
 //  Set the user online field depending on the numbers of connections left
-async function userOnline (context) {
+function userOnline (context) {
   //  If the record exist
   if (context.id) {
-    await context.service.get(context.id) // We get the current record
-      .then(async (connection) => {
+    context.service.get(context.id) // We get the current record
+      .then((connection) => {
         if (connection.user !== '') {
-          await context.service.find({
+          context.service.find({
             query: {
               user: connection.user
             }
@@ -38,16 +38,16 @@ async function userOnline (context) {
   return context
 }
 
-async function clean (context) {
-  //  Recmove messages associated to a connection
-  await context.app.service('/api/system/messages').remove(null, {
+function clean (context) {
+ //  Recmove messages associated to a connection
+  context.app.service('/api/system/messages').remove(null, {
     query: {
       socket: context.id
     }
   })
 
   // If we gonna remove last connection for given user, remove the associated records
-  await context.app.service('/api/system/connections').get(context.id)
+  context.app.service('/api/system/connections').get(context.id)
     .then((connection) => {
       if (connection.user !== '') {
         context.app.service('/api/system/connections').find({
@@ -60,6 +60,14 @@ async function clean (context) {
               context.app.service('/api/system/users').patch(connection.user, { _id: connection.user, online: false })
             }
           })
+
+        //  Remove the player position records
+        context.app.service('/api/game/player_position').remove(null, {
+          query: {
+            _id: connection.user
+          }
+        })
+
       }
     })
 
