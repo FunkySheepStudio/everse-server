@@ -135,6 +135,10 @@ export default {
             {
               title: 'Map',
               to: '/game/map'
+            },
+            {
+              title: 'Netcode Servers',
+              to: '/game/netcode_servers'
             }
           ]
         }
