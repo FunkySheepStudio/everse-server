@@ -19,3 +19,4 @@ jobs:
           sudo rm -rf /var/www/everse.funkysheep.net
           echo ---- Cloning the repository ---
           sudo git clone https://github.com/FunkySheepStudio/everse-server.git /var/www/everse.funkysheep.net
+          sudo chmod +x /var/www/everse.funkysheep.net/server/services/game/netcode_servers/Builds/Linux/netcode.x86_64
