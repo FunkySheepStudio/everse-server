@@ -1,9 +1,10 @@
 const os = require('node:os');
 const path = require('path')
-const { execFile } = require('node:child_process');
+const { execFile } = require('node:child_process')
+const { kill } = require('node:process')
 
-//  Set default creation values
-function create (context) {
+//  Spawn the child process
+function Spawn (context) {
   let execPath = path.join(__dirname, 'Builds')
 
   switch (os.platform()) {
@@ -16,13 +17,14 @@ function create (context) {
     default:
       break;
   }
-  const child = execFile(execPath, [], (error, stdout, stderr) => {
-    if (error) {
-      console.log(stderr);
-      throw error;
-    }
-    console.log(stdout);
-  });
+  const child = execFile(execPath)
+  context.data.pid = child.pid
+
+  return context
+}
+
+function Kill (context) {
+  kill(context.result.pid)
 
   return context
 }
@@ -32,7 +34,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [create],
+    create: [Spawn],
     update: [],
     patch: [],
     remove: []
@@ -45,7 +47,7 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [Kill]
   },
 
   error: {

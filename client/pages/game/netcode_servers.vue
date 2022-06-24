@@ -46,6 +46,10 @@ export default {
           value: '_id'
         },
         {
+          text: 'PID',
+          value: 'pid'
+        },
+        {
           text: 'Remove',
           value: 'remove'
         }
