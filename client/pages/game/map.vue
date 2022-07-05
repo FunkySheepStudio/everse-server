@@ -77,6 +77,7 @@ export default {
     LMarker/* ,
     'v-rotated-marker': Vue2LeafletRotatedMarker */
   },
+  layout: 'admin',
   data () {
     return {
       svgUser: mdiAccount,
