@@ -17,7 +17,7 @@ async function create (context) {
 
         if (context.data.login !== 'admin') {
           context.data.admin = false
-          context.data.nickname = ''
+          context.data.nickname = context.data.nickname ? context.data.nickname : ''
           context.data.latitude = 0
           context.data.longitude = 0
         } else {

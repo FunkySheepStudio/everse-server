@@ -2,6 +2,37 @@ const os = require('node:os');
 const path = require('path')
 const { execFile } = require('node:child_process')
 const { kill } = require('node:process')
+const crypto = require('crypto');
+
+//  Spawn the child process
+function CreateUser (context) {
+  let user = {
+    login: crypto.randomBytes(16).toString('hex'),
+    password: crypto.randomBytes(16).toString('hex'),
+    nickname: 'server_' + crypto.randomBytes(16).toString('hex'),
+    admin: false,
+    latitude: 0,
+    longitude:0
+  }
+
+  return context.app.service('/api/system/users').create(user)
+    .then((serverUser) => {
+      context.data.userLogin = user.login
+      context.data.userPassword = user.password
+      context.data.userId = serverUser._id
+    })
+    .then(() => {
+      return context
+    })
+}
+
+//  Spawn the child process
+function DeleteUser (context) {
+  return context.app.service('/api/system/users').remove(context.result.userId)
+    .then(() => {
+      return context
+    })
+}
 
 //  Spawn the child process
 function Spawn (context) {
@@ -17,7 +48,7 @@ function Spawn (context) {
     default:
       break;
   }
-  const child = execFile(execPath)
+  const child = execFile(execPath, [context.data.userLogin, context.data.userPassword])
   context.data.pid = child.pid
 
   return context
@@ -34,7 +65,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [Spawn],
+    create: [CreateUser, Spawn],
     update: [],
     patch: [],
     remove: []
@@ -47,7 +78,7 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: [Kill]
+    remove: [DeleteUser, Kill]
   },
 
   error: {

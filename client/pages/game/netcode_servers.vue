@@ -50,6 +50,18 @@ export default {
           value: 'pid'
         },
         {
+          text: 'User ID',
+          value: 'userId'
+        },
+        {
+          text: 'User Login',
+          value: 'userLogin'
+        },
+        {
+          text: 'User Password',
+          value: 'userPassword'
+        },
+        {
           text: 'Remove',
           value: 'remove'
         }
