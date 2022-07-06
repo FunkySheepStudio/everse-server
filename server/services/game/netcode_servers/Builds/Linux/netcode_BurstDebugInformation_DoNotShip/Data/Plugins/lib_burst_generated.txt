@@ -164,6 +164,7 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Files.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\UnityEngine.XR.LegacyInputHelpers.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Multiplayer.Tools.NetStatsMonitor.Configuration.dll
+--root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Earth.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Events.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Burst.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.TextMeshPro.dll
@@ -214,7 +215,6 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Crypto.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Vectors.dll
---root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Earth.dll
 --assembly-folder=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Jobs.IJobExtensions+JobStruct`1[[UnityEngine.Rendering.Universal.DecalCreateDrawCallSystem+DrawCallJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.DecalCreateDrawCallSystem+DrawCallJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--aa309157da5950aa53ed6075709e6e40
@@ -472,6 +472,7 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Files.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\UnityEngine.XR.LegacyInputHelpers.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Multiplayer.Tools.NetStatsMonitor.Configuration.dll
+--root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Earth.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Events.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Burst.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.TextMeshPro.dll
@@ -522,7 +523,6 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Crypto.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Vectors.dll
---root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Earth.dll
 --assembly-folder=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Jobs.IJobExtensions+JobStruct`1[[UnityEngine.Rendering.Universal.DecalCreateDrawCallSystem+DrawCallJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.DecalCreateDrawCallSystem+DrawCallJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--aa309157da5950aa53ed6075709e6e40
