@@ -22,6 +22,7 @@
     "@feathersjs/socketio-client": "^4.5.11",
     "@mdi/js": "^6.3.95",
     "@vue/composition-api": "^0.6.7",
+    "bitcoin-core": "^4.0.0",
     "core-js": "^3.13.1",
     "cross-env": "^7.0.3",
     "feathers-nedb": "^5.1.0",
