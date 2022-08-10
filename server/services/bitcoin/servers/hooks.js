@@ -1,3 +1,9 @@
+//  Spawn the child process
+function online (context) {
+  context.app.service('/api/bitcoin/servers').Connect(context.result)
+  return context
+}
+
 module.exports = {
   before: {
     all: [],
@@ -13,7 +19,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [online],
     update: [],
     patch: [],
     remove: []

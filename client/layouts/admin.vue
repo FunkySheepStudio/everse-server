@@ -139,6 +139,10 @@ export default {
             {
               title: 'Netcode Servers',
               to: '/game/netcode_servers'
+            },
+            {
+              title: 'Bitcoin Servers',
+              to: '/game/bitcoin_servers'
             }
           ]
         }
