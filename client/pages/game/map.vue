@@ -63,6 +63,10 @@
       service="/api/game/markers"
       hide-fields
     />
+    <funkysheep-service
+      service="/api/game/events"
+      hide-fields
+    />
   </section>
 </template>
 <script>
@@ -91,14 +95,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('/api/game/markers', { markers: 'find', get: 'get' }),
-    ...mapGetters('/api/game/player_position', { players: 'find', get: 'get' })
+    ...mapGetters('/api/game/markers', { markers: 'find', getMarker: 'get' }),
+    ...mapGetters('/api/game/events', { events: 'find', getEvent: 'get' }),
+    ...mapGetters('/api/game/player_position', { players: 'find', getPlayerPosition: 'get' })
   },
   mounted () {
     this.findMarkers()
     this.findPlayers()
   },
   methods: {
+    ...mapActions('/api/game/events', { findEvents: 'find', patchEvent: 'patch', removeEvent: 'remove' }),
     ...mapActions('/api/game/markers', { findMarkers: 'find', patchMarker: 'patch', removeMarker: 'remove' }),
     ...mapActions('/api/game/player_position', { findPlayers: 'find' }),
     mapClick (event) {},

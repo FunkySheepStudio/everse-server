@@ -15,7 +15,7 @@ module.exports = {
     all: [],
     find: [sendResult],
     get: [],
-    create: [sendResult],
+    create: [],
     update: [],
     patch: [],
     remove: []
