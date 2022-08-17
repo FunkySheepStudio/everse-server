@@ -1,12 +1,12 @@
 Library: lib_burst_generated
 --platform=Linux
---backend=burst-llvm-11
+--backend=burst-llvm-12
 --target=X64_SSE2
 --global-safety-checks-setting=Off
 --dump=Function
 --float-precision=Standard
 --disable-warnings=BC1370
---compilation-defines=UNITY_2021_3_4
+--compilation-defines=UNITY_2021_3_8
 --compilation-defines=UNITY_2021_3
 --compilation-defines=UNITY_2021
 --compilation-defines=UNITY_5_3_OR_NEWER
@@ -98,6 +98,9 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_MONO
 --compilation-defines=NET_STANDARD_2_0
 --compilation-defines=NET_STANDARD
+--compilation-defines=NET_STANDARD_2_1
+--compilation-defines=NETSTANDARD
+--compilation-defines=NETSTANDARD2_1
 --compilation-defines=UNITY_SERVER
 --compilation-defines=ENABLE_CUSTOM_RENDER_TEXTURE
 --compilation-defines=ENABLE_DIRECTOR
@@ -121,7 +124,7 @@ Library: lib_burst_generated
 --compilation-defines=USE_LEGACY_INPUT_HELPERS
 --compilation-defines=UNITY_INPUT_SYSTEM
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_VR
---compilation-defines=UNITY_XR_AVAILABLE
+--compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_XR
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_PHYSICS
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_PHYSICS2D
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_UI
@@ -180,6 +183,7 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Collections.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
+--root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Networking.Transport.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.VisualEffectGraph.Runtime.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.OSM.dll
@@ -207,7 +211,6 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\endel.nativewebsocket.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Stl.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
---root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Crypto.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Files.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.GPS.dll
@@ -310,13 +313,13 @@ Library: lib_burst_generated
 --method=Unity.Networking.Transport.SimulatorPipelineStageInSend, Unity.Networking.Transport, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Receive(Unity.Networking.Transport.NetworkPipelineContext&, Unity.Networking.Transport, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Networking.Transport.InboundRecvBuffer&, Unity.Networking.Transport, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Networking.Transport.NetworkPipelineStage+Requests&, Unity.Networking.Transport, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--d55b8e17f69a1e99e774225233c7145e
 --method=Unity.Networking.Transport.UnreliableSequencedPipelineStage, Unity.Networking.Transport, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Receive(Unity.Networking.Transport.NetworkPipelineContext&, Unity.Networking.Transport, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Networking.Transport.InboundRecvBuffer&, Unity.Networking.Transport, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Networking.Transport.NetworkPipelineStage+Requests&, Unity.Networking.Transport, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--6ddfb6a7cd48122c1505042b91fb7361
 --platform=Linux
---backend=burst-llvm-11
+--backend=burst-llvm-12
 --target=AVX2
 --global-safety-checks-setting=Off
 --dump=Function
 --float-precision=Standard
 --disable-warnings=BC1370
---compilation-defines=UNITY_2021_3_4
+--compilation-defines=UNITY_2021_3_8
 --compilation-defines=UNITY_2021_3
 --compilation-defines=UNITY_2021
 --compilation-defines=UNITY_5_3_OR_NEWER
@@ -408,6 +411,9 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_MONO
 --compilation-defines=NET_STANDARD_2_0
 --compilation-defines=NET_STANDARD
+--compilation-defines=NET_STANDARD_2_1
+--compilation-defines=NETSTANDARD
+--compilation-defines=NETSTANDARD2_1
 --compilation-defines=UNITY_SERVER
 --compilation-defines=ENABLE_CUSTOM_RENDER_TEXTURE
 --compilation-defines=ENABLE_DIRECTOR
@@ -431,7 +437,7 @@ Library: lib_burst_generated
 --compilation-defines=USE_LEGACY_INPUT_HELPERS
 --compilation-defines=UNITY_INPUT_SYSTEM
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_VR
---compilation-defines=UNITY_XR_AVAILABLE
+--compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_XR
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_PHYSICS
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_PHYSICS2D
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_UI
@@ -490,6 +496,7 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Collections.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Mathematics.dll
+--root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Networking.Transport.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.VisualEffectGraph.Runtime.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.OSM.dll
@@ -517,7 +524,6 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\endel.nativewebsocket.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Stl.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
---root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Crypto.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Files.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.GPS.dll

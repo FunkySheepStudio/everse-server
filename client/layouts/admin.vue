@@ -145,6 +145,16 @@ export default {
               to: '/game/bitcoin_servers'
             }
           ]
+        },
+        {
+          icon: 'mdi-gamepad-variant',
+          title: 'Mini games',
+          items: [
+            {
+              title: 'Plane',
+              to: '/minigames/planes/managment'
+            }
+          ]
         }
       ],
       miniVariant: false,
