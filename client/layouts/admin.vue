@@ -137,6 +137,10 @@ export default {
               to: '/game/map'
             },
             {
+              title: 'Buildings',
+              to: '/game/buildings'
+            },
+            {
               title: 'Netcode Servers',
               to: '/game/netcode_servers'
             },
