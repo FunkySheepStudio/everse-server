@@ -23,11 +23,15 @@ module.exports = (app) => {
   service.hooks(hooks)
 
   //  Routes to files publishing and downloading
-  const filesDirectory = path.relative(process.cwd(), __dirname) + '/files/'
+  const filesDirectory = path.join(app.get('homePath'), 'files')
   const upload = multer({ dest: filesDirectory })
   app.post('/buildings_models', upload.single(), (req, res, next) => {
     if (req.file) {
-      service.create({ _id: req.file.filename })
+      service.create(
+        {
+          _id: req.file.filename,
+          building_id: req.file.originalname
+        })
       res.send(req.file.filename)
     }
   })
