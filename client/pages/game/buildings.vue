@@ -28,17 +28,37 @@
                 class="userClass"
                 color="blue"
               >
-                {{ svgUser }}
+                {{ svgBuilding }}
               </v-icon>
             </l-icon>
           </l-marker>
         </l-map>
       </client-only>
     </div>
-    <funkysheep-service
-      service="/api/game/buildings"
-      hide-fields
-    />
+    <v-data-table
+      :items="buildings().data"
+      :headers="buildingHeaders"
+    >
+      <template #[`item.download`]="{ item }">
+        <a
+          :href="'/buildings_models/' + downloadBuilding(item.osm_id)"
+          target="_blank"
+        >
+          Download
+        </a>
+      </template>
+      <template #[`item.remove`]="{ item }">
+        <v-btn
+          @click="removeBuilding(item._id)"
+        >
+          <v-icon
+            color="red"
+          >
+            mdi-delete
+          </v-icon>
+        </v-btn>
+      </template>
+    </v-data-table>
     <funkysheep-service
       service="/api/game/buildings_models"
       hide-fields
@@ -47,7 +67,7 @@
 </template>
 <script>
 // import Vue2LeafletRotatedMarker from 'vue2-leaflet-rotatedmarker'
-import { mdiBlurRadial, mdiAccount } from '@mdi/js'
+import { mdiHome } from '@mdi/js'
 import { LMap, LTileLayer, LMarker } from 'vue2-leaflet'
 import { mapActions, mapGetters } from 'vuex'
 export default {
@@ -60,8 +80,7 @@ export default {
   layout: 'admin',
   data () {
     return {
-      svgUser: mdiAccount,
-      svgMarker: mdiBlurRadial,
+      svgBuilding: mdiHome,
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -71,13 +90,56 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('/api/game/buildings', { buildings: 'find', getBuilding: 'get' })
+    ...mapGetters('/api/game/buildings', { buildings: 'find', getBuilding: 'get' }),
+    ...mapGetters('/api/game/buildings_models', { buildingsModels: 'find' }),
+    buildingHeaders () {
+      return [
+        {
+          text: 'Id',
+          value: '_id'
+        },
+        {
+          text: 'Osm Id',
+          value: 'osm_id'
+        },
+        {
+          text: 'Latitude',
+          value: 'latitude'
+        },
+        {
+          text: 'Longitude',
+          value: 'longitude'
+        },
+        {
+          text: 'Height',
+          value: 'height'
+        },
+        {
+          text: 'Download',
+          value: 'download'
+        },
+        {
+          text: 'Remove',
+          value: 'remove'
+        }
+      ]
+    }
   },
   mounted () {
     this.findBuildings()
+    this.findBuildingsModels()
   },
   methods: {
-    ...mapActions('/api/game/buildings', { findBuildings: 'find', patchBuilding: 'patch', removeBuilding: 'remove' })
+    ...mapActions('/api/game/buildings', { findBuildings: 'find', patchBuilding: 'patch', removeBuilding: 'remove' }),
+    ...mapActions('/api/game/buildings_models', { findBuildingsModels: 'find' }),
+    downloadBuilding (_id) {
+      const buildingModel = this.buildingsModels().data.find(model => model.building_id === _id)
+      if (buildingModel) {
+        return buildingModel._id
+      } else {
+        return ''
+      }
+    }
   }
 }
 </script>

@@ -30,7 +30,8 @@ module.exports = (app) => {
       service.create(
         {
           _id: req.file.filename,
-          building_id: req.file.originalname
+          building_id: req.file.originalname,
+          index: 0
         })
       res.send(req.file.filename)
     }
@@ -39,6 +40,6 @@ module.exports = (app) => {
   app.get('/buildings_models:file(*)', (req, res) => {
     const file = req.params.file
     const fileLocation = path.join(filesDirectory, file)
-    res.download(fileLocation, file)
+    res.download(fileLocation, file + '.obj')
   })
 }
