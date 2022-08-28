@@ -11,7 +11,7 @@ async function create (context) {
   })
     .then((admins) => {
       if (admins.total === 1) {
-        throw new Error(context.data.login + ' user already exist');
+        throw new Error(context.data.login + ' user already exist')
       } else {
         context.data.online = false
 

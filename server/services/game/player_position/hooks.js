@@ -1,3 +1,9 @@
+function OnPatch (context) {
+  context.app.service('/api/game/markers').find({
+    socket: context.params.socket
+  })
+}
+
 module.exports = {
   before: {
     all: [],
