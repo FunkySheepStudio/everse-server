@@ -1,18 +1,18 @@
-const os = require('node:os');
+const os = require('node:os')
 const path = require('path')
 const { execFile } = require('node:child_process')
 const { kill } = require('node:process')
-const crypto = require('crypto');
+const crypto = require('crypto')
 
 //  Spawn the child process
 function CreateUser (context) {
-  let user = {
+  const user = {
     login: crypto.randomBytes(16).toString('hex'),
     password: crypto.randomBytes(16).toString('hex'),
     nickname: 'server_' + crypto.randomBytes(16).toString('hex'),
     admin: false,
     latitude: 0,
-    longitude:0
+    longitude: 0
   }
 
   return context.app.service('/api/system/users').create(user)
@@ -41,15 +41,47 @@ function Spawn (context) {
   switch (os.platform()) {
     case 'win32':
       execPath = path.join(execPath, 'Win', 'Everse.exe')
-      break;
+      break
     case 'linux':
       execPath = path.join(execPath, 'Linux', 'netcode.x86_64')
-      break;
+      break
     default:
-      break;
+      break
   }
+
   const child = execFile(execPath, [context.data.userLogin, context.data.userPassword])
   context.data.pid = child.pid
+
+  child.stdout.setEncoding('utf8')
+  child.stdout.on('data', (data) => {
+    context.app.service('/api/game/netcode_servers_output').create({
+      pid: context.data.pid,
+      type: 'log',
+      data
+    }).catch((err) => {
+      context.app.log(err)
+    })
+  })
+
+  child.stderr.on('data', (data) => {
+    context.app.service('/api/game/netcode_servers_output').create({
+      pid: context.data.pid,
+      type: 'err',
+      data
+    }).catch((err) => {
+      context.app.log(err)
+    })
+  })
+
+  child.on('close', (data) => {
+    context.app.service('/api/game/netcode_servers_output').create({
+      pid: context.data.pid,
+      type: 'out',
+      data
+    }).catch((err) => {
+      context.app.log(err)
+    })
+  })
 
   return context
 }

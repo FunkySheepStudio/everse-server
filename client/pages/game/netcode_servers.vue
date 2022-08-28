@@ -21,6 +21,10 @@
         </v-btn>
       </template>
     </v-data-table>
+    <funkysheep-service
+      service="/api/game/netcode_servers_output"
+      hide-fields
+    />
   </section>
 </template>
 <script>

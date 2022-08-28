@@ -178,6 +178,7 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Game.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Multiplayer.Tools.NetStats.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Multiplayer.Tools.NetStatsMonitor.Implementation.dll
+--root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Obj.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Poly2Tri.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.ProBuilder.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Collections.dll
@@ -491,6 +492,7 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Game.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Multiplayer.Tools.NetStats.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Multiplayer.Tools.NetStatsMonitor.Implementation.dll
+--root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\FunkySheep.Obj.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.ProBuilder.Poly2Tri.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.ProBuilder.dll
 --root-assembly=C:\Users\Kaas\Documents\FunkySheep\Games\everse-client\Temp\StagingArea\Data\Managed\Unity.Collections.dll
