@@ -25,15 +25,6 @@ function CreateUser (context) {
       return context
     })
 }
-
-//  Spawn the child process
-function DeleteUser (context) {
-  return context.app.service('/api/system/users').remove(context.result.userId)
-    .then(() => {
-      return context
-    })
-}
-
 //  Spawn the child process
 function Spawn (context) {
   let execPath = path.join(__dirname, 'Builds')
@@ -74,21 +65,29 @@ function Spawn (context) {
   })
 
   child.on('close', (data) => {
-    context.app.service('/api/game/netcode_servers_output').create({
-      pid: context.data.pid,
-      type: 'out',
-      data
-    }).catch((err) => {
-      context.app.log(err)
-    })
+    context.app.service('/api/game/netcode_servers').remove(context.result._id)
   })
 
   return context
 }
 
-function Kill (context) {
-  kill(context.result.pid)
+//  Spawn the child process
+function Clean (context) {
+  context.app.service('/api/system/users').remove(context.result.userId)
+  context.app.service('/api/game/netcode_servers_output').remove(null, {
+    query: {
+      pid: context.result.pid
+    }
+  })
 
+  return context
+}
+
+
+function Kill (context) {
+  try {
+    kill(context.result.pid)
+  } catch(e) {}
   return context
 }
 
@@ -110,7 +109,7 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: [DeleteUser, Kill]
+    remove: [Kill, Clean]
   },
 
   error: {

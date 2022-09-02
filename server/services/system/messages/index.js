@@ -14,8 +14,8 @@ module.exports = (app) => {
     Model: createModel(app),
     multi: true,
     paginate: {
-      default: 100,
-      max: 100
+      default: 10,
+      max: 10
     }
   }
 
