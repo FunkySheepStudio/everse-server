@@ -14,15 +14,7 @@
         :menu="menu"
         :hidden="$vuetify.breakpoint.mobile"
       />
-      <v-btn
-        fab
-        elevation="0"
-        @click="mobileMenu = !mobileMenu"
-      >
-        <v-icon dark>
-          mdi-account
-        </v-icon>
-      </v-btn>
+      <userProfileIcon />
       <div
         :hidden="!$vuetify.breakpoint.mobile"
       >
@@ -76,17 +68,17 @@
           class="mx-2"
           vertical
         />
-        <funkysheep-social
-          :hidden="$vuetify.breakpoint.mobile"
-        />
       </v-layout>
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import userProfileIcon from '~/components/users/profile-icon.vue'
 export default {
-  components: {},
+  components: {
+    userProfileIcon
+  },
   middleware: ['authenticated'],
   data () {
     return {

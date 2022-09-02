@@ -24,7 +24,7 @@
         vertical
         :hidden="$vuetify.breakpoint.mobile"
       />
-      <funkysheep-user-login />
+      <userProfileIcon />
       <v-divider
         class="mx-4"
         vertical
@@ -98,8 +98,9 @@
 </template>
 
 <script>
+import userProfileIcon from '~/components/users/profile-icon.vue'
 export default {
-  components: {},
+  components: { userProfileIcon },
   middleware: ['authenticated', 'admin'],
   data () {
     return {

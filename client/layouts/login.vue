@@ -13,9 +13,6 @@
         vertical
         :hidden="$vuetify.breakpoint.mobile"
       />
-      <funkysheep-social
-        :hidden="$vuetify.breakpoint.mobile"
-      />
       <div
         :hidden="!$vuetify.breakpoint.mobile"
       >
@@ -44,11 +41,6 @@
       fixed
       @mouseout="showMobileMenu = false"
     >
-      <v-list>
-        <v-list-item>
-          <funkysheep-social />
-        </v-list-item>
-      </v-list>
     </v-navigation-drawer>
     <v-footer
       color="primary"
@@ -66,9 +58,6 @@
         <v-divider
           class="mx-2"
           vertical
-        />
-        <funkysheep-social
-          :hidden="$vuetify.breakpoint.mobile"
         />
       </v-layout>
     </v-footer>
