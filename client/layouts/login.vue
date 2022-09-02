@@ -7,41 +7,12 @@
       <funkysheep-logo
         src="/img/Logo.png"
       />
-      <v-spacer />
-      <v-divider
-        class="mx-4"
-        vertical
-        :hidden="$vuetify.breakpoint.mobile"
-      />
-      <div
-        :hidden="!$vuetify.breakpoint.mobile"
-      >
-        <v-btn
-          fab
-          elevation="0"
-          x-small
-          color="primary"
-          @click="mobileMenu = !mobileMenu"
-        >
-          <v-icon dark>
-            mdi-menu
-          </v-icon>
-        </v-btn>
-      </div>
     </v-app-bar>
     <v-main>
       <v-container>
         <nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer
-      v-model="mobileMenu"
-      right
-      temporary
-      fixed
-      @mouseout="showMobileMenu = false"
-    >
-    </v-navigation-drawer>
     <v-footer
       color="primary"
       height="auto"

@@ -8,6 +8,10 @@
           @input="CheckLogin($event)"
         />
         <v-text-field
+          v-model="nickname"
+          label="Nickname"
+        />
+        <v-text-field
           v-model="password"
           label="Password"
           :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -47,6 +51,7 @@ export default {
       password: '',
       passwordCheck: '',
       login: '',
+      nickname: '',
       showPassword: false,
       message: '',
       isValid: false
@@ -60,14 +65,20 @@ export default {
       this.id = this.$store.state.auth.user._id
       this.login = this.$store.state.auth.user.login
       this.isValid = true
+
+      this.getUser(this.id)
+        .then((data) => {
+          this.nickname = data.nickname
+        })
     } else {
       this.id = ''
       this.login = ''
+      this.nickname = ''
       this.isValid = false
     }
   },
   methods: {
-    ...mapActions('/api/system/users', { findUsers: 'find', patch: 'patch', create: 'create' }),
+    ...mapActions('/api/system/users', { findUsers: 'find', getUser: 'get', patch: 'patch' }),
     LoginExist (login) {
       const query = {
         login,
@@ -100,12 +111,13 @@ export default {
         })
     },
     Save () {
-      if (this._id) {
+      if (this.id) {
         this.patch([
           this.id,
           {
             login: this.login,
-            password: this.password
+            password: this.password,
+            nickname: this.nickname
           }
         ])
           .then(() => {
@@ -115,12 +127,6 @@ export default {
           .catch((err) => {
             this.message = err.message
           })
-      } else {
-        const data = {
-          login: this.login,
-          password: this.password
-        }
-        this.create(data)
       }
     },
     Logout () {
