@@ -115,6 +115,14 @@ export default {
           value: 'height'
         },
         {
+          text: 'X',
+          value: 'x'
+        },
+        {
+          text: 'Y',
+          value: 'y'
+        },
+        {
           text: 'Download',
           value: 'download'
         },
