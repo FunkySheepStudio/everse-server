@@ -36,10 +36,11 @@
       </client-only>
     </div>
     <v-data-table
-      v-model="selected"
+      v-model="selectedBuilding"
       :items="buildings().data"
+      item-key="_id"
       :headers="buildingHeaders"
-      single-select="true"
+      :single-select="true"
       show-select
     >
       <template #[`item.download`]="{ item }">
@@ -66,12 +67,26 @@
       <v-card-title>
         Upload a new model
       </v-card-title>
-      Selected buildin Id: {{ selected[0]?._id }}
+      Selected buildin Id: {{ selectedBuilding[0]?.osm_id }}
       <v-file-input
-        label="Model file (*.obj)"
-        accept="file/obj"
-        prepend-icon="mdi-cube-outline"
-      />
+        label="File input"
+        @change="upload($event)"
+      >
+        <template #selection="{ text }">
+          <v-chip
+            small
+            label
+            color="primary"
+          >
+            {{ text }}
+          </v-chip>
+          <v-progress-circular
+            :value="progress"
+          >
+            {{ progress }}
+          </v-progress-circular>
+        </template>
+      </v-file-input>
       <v-select
         :items="[0, 1, 2]"
         filled
@@ -84,10 +99,34 @@
         Upload model
       </v-btn>
     </v-card>
-    <funkysheep-service
-      service="/api/game/buildings_models"
-      hide-fields
-    />
+    <v-data-table
+      v-model="selectedModelBuilding"
+      item-key="_id"
+      :items="buildingsModels().data.filter(model => model.building_id === selectedBuilding[0]?.osm_id)"
+      :headers="buildingModelsHeaders"
+      :single-select="true"
+      show-select
+    >
+      <template #[`item.download`]="{ item }">
+        <a
+          :href="'/buildings_models/' + downloadBuilding(item.osm_id)"
+          target="_blank"
+        >
+          Download
+        </a>
+      </template>
+      <template #[`item.remove`]="{ item }">
+        <v-btn
+          @click="removeModelBuilding(item._id)"
+        >
+          <v-icon
+            color="red"
+          >
+            mdi-delete
+          </v-icon>
+        </v-btn>
+      </template>
+    </v-data-table>
   </section>
 </template>
 <script>
@@ -105,19 +144,26 @@ export default {
   layout: 'admin',
   data () {
     return {
-      selected: [],
+      selectedBuilding: [],
+      selectedModelBuilding: [],
       svgBuilding: mdiHome,
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       zoom: 20,
       center: [44.63841, 4.3801],
-      markerLatLng: [44.63841, 4.3801]
+      markerLatLng: [44.63841, 4.3801],
+      progress: 0
     }
   },
   computed: {
     ...mapGetters('/api/game/buildings', { buildings: 'find', getBuilding: 'get' }),
     ...mapGetters('/api/game/buildings_models', { buildingsModels: 'find' }),
+    query () {
+      return {
+        building_id: '67944207'
+      }
+    },
     buildingHeaders () {
       return [
         {
@@ -157,6 +203,30 @@ export default {
           value: 'remove'
         }
       ]
+    },
+    buildingModelsHeaders () {
+      return [
+        {
+          text: 'Id',
+          value: '_id'
+        },
+        {
+          text: 'Building Id',
+          value: 'building_id'
+        },
+        {
+          text: 'LOD',
+          value: 'index'
+        },
+        {
+          text: 'Download',
+          value: 'download'
+        },
+        {
+          text: 'Remove',
+          value: 'remove'
+        }
+      ]
     }
   },
   mounted () {
@@ -165,7 +235,7 @@ export default {
   },
   methods: {
     ...mapActions('/api/game/buildings', { findBuildings: 'find', patchBuilding: 'patch', removeBuilding: 'remove' }),
-    ...mapActions('/api/game/buildings_models', { findBuildingsModels: 'find' }),
+    ...mapActions('/api/game/buildings_models', { findBuildingsModels: 'find', removeModelBuilding: 'remove' }),
     downloadBuilding (_id) {
       const buildingModel = this.buildingsModels().data.find(model => model.building_id === _id)
       if (buildingModel) {
@@ -174,7 +244,20 @@ export default {
         return ''
       }
     },
-    uploadModel () {
+    upload (file) {
+      const formData = new FormData()
+      formData.append(this.selectedBuilding[0]?.osm_id, file)
+      const xhr = new XMLHttpRequest()
+      xhr.open('POST', '/buildings_models')
+      xhr.onload = (e) => {
+        this.response = xhr.response
+      }
+      xhr.upload.onprogress = (e) => {
+        if (e.lengthComputable) {
+          this.progress = Math.round((e.loaded / e.total) * 100)
+        }
+      }
+      xhr.send(formData)
     }
   }
 }

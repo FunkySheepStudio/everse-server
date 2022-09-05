@@ -25,7 +25,12 @@ module.exports = (app) => {
   //  Routes to files publishing and downloading
   const filesDirectory = path.join(app.get('homePath'), 'files')
   const upload = multer({ dest: filesDirectory })
-  app.post('/buildings_models', upload.single(), (req, res, next) => {
+  app.post('/buildings_models', upload.any(), (req, res, next) => {
+    if (!req.file) {
+      req.file = req.files[0]
+      req.file.originalname = req.file.fieldname
+    }
+
     if (req.file) {
       service.create(
         {
