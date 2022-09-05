@@ -185,4 +185,8 @@ export default {
     border-bottom : 2em solid red;
     border-left : 1em solid transparent;
   }
+
+  .vue2leaflet-map {
+    z-index: 1;
+  }
 </style>
