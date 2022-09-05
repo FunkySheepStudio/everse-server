@@ -36,8 +36,11 @@
       </client-only>
     </div>
     <v-data-table
+      v-model="selected"
       :items="buildings().data"
       :headers="buildingHeaders"
+      single-select="true"
+      show-select
     >
       <template #[`item.download`]="{ item }">
         <a
@@ -59,6 +62,28 @@
         </v-btn>
       </template>
     </v-data-table>
+    <v-card>
+      <v-card-title>
+        Upload a new model
+      </v-card-title>
+      Selected buildin Id: {{ selected[0]?._id }}
+      <v-file-input
+        label="Model file (*.obj)"
+        accept="file/obj"
+        prepend-icon="mdi-cube-outline"
+      />
+      <v-select
+        :items="[0, 1, 2]"
+        filled
+        label="LOD Level"
+        single-line
+      />
+      <v-btn
+        @click="uploadModel()"
+      >
+        Upload model
+      </v-btn>
+    </v-card>
     <funkysheep-service
       service="/api/game/buildings_models"
       hide-fields
@@ -80,6 +105,7 @@ export default {
   layout: 'admin',
   data () {
     return {
+      selected: [],
       svgBuilding: mdiHome,
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
@@ -147,6 +173,8 @@ export default {
       } else {
         return ''
       }
+    },
+    uploadModel () {
     }
   }
 }
