@@ -43,14 +43,6 @@
       :single-select="true"
       show-select
     >
-      <template #[`item.download`]="{ item }">
-        <a
-          :href="'/buildings_models/' + downloadBuilding(item.osm_id)"
-          target="_blank"
-        >
-          Download
-        </a>
-      </template>
       <template #[`item.remove`]="{ item }">
         <v-btn
           @click="removeBuilding(item._id)"
@@ -69,32 +61,18 @@
       </v-card-title>
       Selected buildin Id: {{ selectedBuilding[0]?.osm_id }}
       <v-file-input
+        v-model="file"
         label="File input"
-        @change="upload($event)"
-      >
-        <template #selection="{ text }">
-          <v-chip
-            small
-            label
-            color="primary"
-          >
-            {{ text }}
-          </v-chip>
-          <v-progress-circular
-            :value="progress"
-          >
-            {{ progress }}
-          </v-progress-circular>
-        </template>
-      </v-file-input>
+      />
       <v-select
-        :items="[0, 1, 2]"
+        v-model="lodLevel"
+        :items="[0, 1]"
         filled
         label="LOD Level"
         single-line
       />
       <v-btn
-        @click="uploadModel()"
+        @click="upload()"
       >
         Upload model
       </v-btn>
@@ -109,7 +87,7 @@
     >
       <template #[`item.download`]="{ item }">
         <a
-          :href="'/buildings_models/' + downloadBuilding(item.osm_id)"
+          :href="'/buildings_models/' + item._id"
           target="_blank"
         >
           Download
@@ -153,7 +131,9 @@ export default {
       zoom: 20,
       center: [44.63841, 4.3801],
       markerLatLng: [44.63841, 4.3801],
-      progress: 0
+      progress: 0,
+      lodLevel: 0,
+      file: {}
     }
   },
   computed: {
@@ -195,10 +175,6 @@ export default {
           value: 'y'
         },
         {
-          text: 'Download',
-          value: 'download'
-        },
-        {
           text: 'Remove',
           value: 'remove'
         }
@@ -215,8 +191,8 @@ export default {
           value: 'building_id'
         },
         {
-          text: 'LOD',
-          value: 'index'
+          text: 'LOD Level',
+          value: 'lod_level'
         },
         {
           text: 'Download',
@@ -236,19 +212,13 @@ export default {
   methods: {
     ...mapActions('/api/game/buildings', { findBuildings: 'find', patchBuilding: 'patch', removeBuilding: 'remove' }),
     ...mapActions('/api/game/buildings_models', { findBuildingsModels: 'find', removeModelBuilding: 'remove' }),
-    downloadBuilding (_id) {
-      const buildingModel = this.buildingsModels().data.find(model => model.building_id === _id)
-      if (buildingModel) {
-        return buildingModel._id
-      } else {
-        return ''
-      }
-    },
-    upload (file) {
+    upload () {
       const formData = new FormData()
-      formData.append(this.selectedBuilding[0]?.osm_id, file)
+      formData.append('model', this.file)
       const xhr = new XMLHttpRequest()
       xhr.open('POST', '/buildings_models')
+      xhr.setRequestHeader('building_id', this.selectedBuilding[0]?.osm_id)
+      xhr.setRequestHeader('lod_level', this.lodLevel)
       xhr.onload = (e) => {
         this.response = xhr.response
       }
