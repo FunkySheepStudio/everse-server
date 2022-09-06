@@ -67,6 +67,10 @@
       service="/api/game/events"
       hide-fields
     />
+    <funkysheep-service
+      service="/api/game/player_world_tiles"
+      hide-fields
+    />
   </section>
 </template>
 <script>

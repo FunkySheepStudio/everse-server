@@ -1,3 +1,6 @@
+const getUser = require('../../../hooks/getUser')
+const setUser = require('../../../hooks/setUser')
+
 module.exports = {
   before: {
     all: [],
