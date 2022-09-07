@@ -30,8 +30,8 @@ module.exports = (app) => {
       service.create(
         {
           _id: req.file.filename,
-          building_id: req.get("building_id"),
-          lod_level: req.get("lod_level")
+          building_id: req.get('building_id'),
+          lod_level: parseInt(req.get('lod_level'))
         })
       res.send(req.file.filename)
     }

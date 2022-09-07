@@ -6,6 +6,7 @@ const markers = require('./markers')
 const events = require('./events')
 const buildings = require('./buildings')
 const buildingsModels = require('./buildings_models')
+const buildingsMaterials = require('./buildings_materials')
 
 module.exports = function (app) {
   app.configure(netcodeServers)
@@ -16,4 +17,5 @@ module.exports = function (app) {
   app.configure(events)
   app.configure(buildings)
   app.configure(buildingsModels)
+  app.configure(buildingsMaterials)
 }

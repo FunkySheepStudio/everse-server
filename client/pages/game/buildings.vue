@@ -61,8 +61,12 @@
       </v-card-title>
       Selected buildin Id: {{ selectedBuilding[0]?.osm_id }}
       <v-file-input
-        v-model="file"
-        label="File input"
+        v-model="fileModel"
+        label="Model file"
+      />
+      <v-file-input
+        v-model="fileMaterial"
+        label="Material file"
       />
       <v-select
         v-model="lodLevel"
@@ -105,6 +109,34 @@
         </v-btn>
       </template>
     </v-data-table>
+    <v-data-table
+      v-model="selectedMaterialBuilding"
+      item-key="_id"
+      :items="buildingsMaterials().data.filter(model => model.building_id === selectedBuilding[0]?.osm_id)"
+      :headers="buildingMaterialsHeaders"
+      :single-select="true"
+      show-select
+    >
+      <template #[`item.download`]="{ item }">
+        <a
+          :href="'/buildings_materials/' + item._id"
+          target="_blank"
+        >
+          Download
+        </a>
+      </template>
+      <template #[`item.remove`]="{ item }">
+        <v-btn
+          @click="removeMaterialBuilding(item._id)"
+        >
+          <v-icon
+            color="red"
+          >
+            mdi-delete
+          </v-icon>
+        </v-btn>
+      </template>
+    </v-data-table>
   </section>
 </template>
 <script>
@@ -124,6 +156,7 @@ export default {
     return {
       selectedBuilding: [],
       selectedModelBuilding: [],
+      selectedMaterialBuilding: [],
       svgBuilding: mdiHome,
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:
@@ -133,17 +166,14 @@ export default {
       markerLatLng: [44.63841, 4.3801],
       progress: 0,
       lodLevel: 0,
-      file: {}
+      fileModel: {},
+      fileMaterial: {}
     }
   },
   computed: {
     ...mapGetters('/api/game/buildings', { buildings: 'find', getBuilding: 'get' }),
     ...mapGetters('/api/game/buildings_models', { buildingsModels: 'find' }),
-    query () {
-      return {
-        building_id: '67944207'
-      }
-    },
+    ...mapGetters('/api/game/buildings_materials', { buildingsMaterials: 'find' }),
     buildingHeaders () {
       return [
         {
@@ -203,20 +233,62 @@ export default {
           value: 'remove'
         }
       ]
+    },
+    buildingMaterialsHeaders () {
+      return [
+        {
+          text: 'Id',
+          value: '_id'
+        },
+        {
+          text: 'Building Id',
+          value: 'building_id'
+        },
+        {
+          text: 'LOD Level',
+          value: 'lod_level'
+        },
+        {
+          text: 'Download',
+          value: 'download'
+        },
+        {
+          text: 'Remove',
+          value: 'remove'
+        }
+      ]
     }
   },
   mounted () {
     this.findBuildings()
     this.findBuildingsModels()
+    this.findBuildingsMaterials()
   },
   methods: {
     ...mapActions('/api/game/buildings', { findBuildings: 'find', patchBuilding: 'patch', removeBuilding: 'remove' }),
     ...mapActions('/api/game/buildings_models', { findBuildingsModels: 'find', removeModelBuilding: 'remove' }),
+    ...mapActions('/api/game/buildings_materials', { findBuildingsMaterials: 'find', removeMaterialBuilding: 'remove' }),
     upload () {
-      const formData = new FormData()
-      formData.append('model', this.file)
-      const xhr = new XMLHttpRequest()
+      let formData = new FormData()
+      formData.append('model', this.fileModel)
+      let xhr = new XMLHttpRequest()
       xhr.open('POST', '/buildings_models')
+      xhr.setRequestHeader('building_id', this.selectedBuilding[0]?.osm_id)
+      xhr.setRequestHeader('lod_level', this.lodLevel)
+      xhr.onload = (e) => {
+        this.response = xhr.response
+      }
+      xhr.upload.onprogress = (e) => {
+        if (e.lengthComputable) {
+          this.progress = Math.round((e.loaded / e.total) * 100)
+        }
+      }
+      xhr.send(formData)
+
+      formData = new FormData()
+      formData.append('material', this.fileMaterial)
+      xhr = new XMLHttpRequest()
+      xhr.open('POST', '/buildings_materials')
       xhr.setRequestHeader('building_id', this.selectedBuilding[0]?.osm_id)
       xhr.setRequestHeader('lod_level', this.lodLevel)
       xhr.onload = (e) => {
