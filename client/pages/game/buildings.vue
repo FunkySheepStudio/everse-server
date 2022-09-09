@@ -19,6 +19,7 @@
             v-for="building in buildings().data"
             :key="building._id"
             :lat-lng="[building.latitude.toString(), building.longitude.toString()]"
+            @click="selectedBuilding = [building]"
           >
             <l-icon
               :icon-size="[30, 30]"

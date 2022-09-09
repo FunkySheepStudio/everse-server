@@ -8,19 +8,8 @@
           label="Login"
           @input="CheckLogin($event)"
         />
-        <v-text-field
+        <passwordForm
           v-model="password"
-          label="Password"
-          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="showPassword ? 'text' : 'password'"
-          @click:append="showPassword = !showPassword"
-        />
-        <v-text-field
-          v-model="passwordCheck"
-          label="Confirm Password"
-          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="showPassword ? 'text' : 'password'"
-          @click:append="showPassword = !showPassword"
         />
         <v-btn
           v-if="$store.state.auth.user"
@@ -41,14 +30,16 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import passwordForm from '~/components/users/password.vue'
 export default {
+  components: {
+    passwordForm
+  },
   data () {
     return {
       id: '',
       password: '',
-      passwordCheck: '',
       login: '',
-      showPassword: false,
       message: '',
       isValid: false
     }

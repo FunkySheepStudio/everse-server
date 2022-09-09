@@ -1,3 +1,5 @@
+const SetSocket = require('../../../hooks/setSocket')
+
 function SendAssets (context) {
   context.app.service('/api/game/buildings')
     .find({
@@ -62,7 +64,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [SendAssets],
+    create: [SetSocket, SendAssets],
     update: [],
     patch: [],
     remove: []

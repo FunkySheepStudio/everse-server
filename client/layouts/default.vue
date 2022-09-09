@@ -84,18 +84,7 @@ export default {
     return {
       drawer: false,
       fixed: false,
-      menus: [
-        {
-          icon: 'mdi-gamepad-variant',
-          title: 'Game',
-          items: [
-            {
-              title: 'Map',
-              to: '/game/map'
-            }
-          ]
-        }
-      ],
+      menus: [],
       miniVariant: false,
       mobileMenu: false,
       title: 'Everse'

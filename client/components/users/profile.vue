@@ -11,19 +11,8 @@
           v-model="nickname"
           label="Nickname"
         />
-        <v-text-field
+        <passwordForm
           v-model="password"
-          label="Password"
-          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="showPassword ? 'text' : 'password'"
-          @click:append="showPassword = !showPassword"
-        />
-        <v-text-field
-          v-model="passwordCheck"
-          label="Confirm Password"
-          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="showPassword ? 'text' : 'password'"
-          @click:append="showPassword = !showPassword"
         />
         <v-btn
           v-if="$store.state.auth.user"
@@ -37,22 +26,23 @@
         >
           Save
         </v-btn>
-        {{ message }}
       </v-card-text>
     </v-card>
   </section>
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import passwordForm from '~/components/users/password.vue'
 export default {
+  components: {
+    passwordForm
+  },
   data () {
     return {
       id: '',
-      password: '',
-      passwordCheck: '',
+      password: localStorage.getItem('password'),
       login: '',
       nickname: '',
-      showPassword: false,
       message: '',
       isValid: false
     }
@@ -132,8 +122,9 @@ export default {
     Logout () {
       this.$store.dispatch('auth/logout')
         .then(() => {
-          localStorage.setItem('login', this.login)
-          localStorage.setItem('password', this.password)
+          localStorage.removeItem('login')
+          localStorage.removeItem('password')
+          localStorage.removeItem('_id')
           localStorage.removeItem('feathers-jwt')
           window.location.href = '/'
         })

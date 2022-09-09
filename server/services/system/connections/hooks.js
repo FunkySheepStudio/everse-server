@@ -46,6 +46,13 @@ function clean (context) {
     }
   })
 
+  //  Recmove the player tiles
+  context.app.service('/api/game/player_world_tiles').remove(null, {
+    query: {
+      socket: context.id
+    }
+  })
+
   // If we gonna remove last connection for given user, remove the associated records
   context.app.service('/api/system/connections').get(context.id)
     .then((connection) => {
