@@ -84,7 +84,18 @@ export default {
     return {
       drawer: false,
       fixed: false,
-      menus: [],
+      menus: [
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Settings',
+          items: [
+            {
+              title: 'Map',
+              to: '/user/map'
+            }
+          ]
+        }
+      ],
       miniVariant: false,
       mobileMenu: false,
       title: 'Everse'

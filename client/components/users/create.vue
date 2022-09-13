@@ -113,6 +113,9 @@ export default {
           password: this.password
         }
         this.create(data)
+          .then(() => {
+            this.message = 'User created'
+          })
       }
     },
     Logout () {

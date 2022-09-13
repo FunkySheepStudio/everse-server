@@ -25,7 +25,7 @@ async function dispatch (context) {
   
         break
       case 'get':
-        context.app.service(context.data.service).get(context.data.key, context.data.params)
+        context.app.service(context.data.service).get(context.data.data.key, context.data.params)
           .catch((err) => {
             context.app.log(err)
           })

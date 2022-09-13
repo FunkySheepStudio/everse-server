@@ -66,6 +66,9 @@ function Spawn (context) {
 
   child.on('close', (data) => {
     context.app.service('/api/game/netcode_servers').remove(context.result._id)
+      .catch(() => {
+        console.log('Netcode server already cleaned')    
+      })
   })
 
   return context
@@ -74,6 +77,9 @@ function Spawn (context) {
 //  Spawn the child process
 function Clean (context) {
   context.app.service('/api/system/users').remove(context.result.userId)
+    .catch(() => {
+      console.log('Netcode server already cleaned')    
+    })
   context.app.service('/api/game/netcode_servers_output').remove(null, {
     query: {
       pid: context.result.pid

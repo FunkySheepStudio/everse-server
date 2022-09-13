@@ -28,6 +28,17 @@ module.exports = class ServiceClass extends Service {
     this.emit('stopped', this.name)
   }
 
+  get (_id, params)
+  {
+    return super.get(_id, params)
+      .then((record) => {
+        return record
+      })
+      .catch(() => {
+        return {};
+      })
+  }
+
   create (data, params) {
     return this.exist(data._id)
       .then((exist) => {

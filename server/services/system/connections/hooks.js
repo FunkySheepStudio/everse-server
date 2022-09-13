@@ -68,13 +68,6 @@ function clean (context) {
             }
           })
 
-        //  Remove the player position records
-        context.app.service('/api/game/player_position').remove(null, {
-          query: {
-            _id: connection.user
-          }
-        })
-
       }
     })
 
