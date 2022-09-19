@@ -1,8 +1,10 @@
+const path = require('path')
 const NeDB = require('nedb')
 
 module.exports = function (app) {
   const Model = new NeDB({
-    inMemoryOnly: true
+    filename: path.join(app.get('homePath'), 'db', 'player_position.db'),
+    autoload: true
   })
 
   return Model
